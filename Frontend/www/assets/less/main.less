@@ -13,11 +13,24 @@
 
 }
 
+body {
+  min-width: 600px;
+}
+
 .my-container {
   max-width: 900px;
   margin: auto;
 
   padding: 10px;
+}
+
+//
+.text-empty {
+
+  color: black;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .right-panel {
@@ -26,13 +39,19 @@
   position: fixed;
   top: 0;
   right: 0;
+  box-shadow: rgba(0,0,0,.2) -3px 3px 10px
+}
+
+.main-pizza-info {
+  height: 130px;
+  overflow: hidden;
 }
 
 .main-part {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: hidden;
 
   padding-top: @rightTopHeight;
   padding-bottom: @rightBottomHeight;
@@ -47,15 +66,17 @@
   top: 0;
   right: 0;
   background-color: #fff;
+  z-index: 1;
 }
 
 .bottom-part {
   position: absolute;
   width: 100%;
-  height: @rightBottomHeight+40px;
+  height: 100px;
   bottom: 0;
   right: 0;
   background: #fff;
+  //margin-bottom
 }
 
 .btn-buy-small {
@@ -69,7 +90,7 @@
   }
 }
 
-.btn-buy-large {
+.btn-buy-big {
   color: #fff !important;
   background-color: @button-color;
   border-color: @border-color;
@@ -78,7 +99,6 @@
   &:hover {
     background-image: linear-gradient(to bottom, #f0861a 0, #eb831c 100%);
   }
-  float: right;
 }
 
 .refresh-pizza {
@@ -186,8 +206,8 @@
 }
 
 .description {
-  width: 255px;
-  height: 59px;
+  //width: 255px;
+  //height: 59px;
 }
 
 .top-panel {
@@ -288,14 +308,13 @@
 
 }
 
-#filter-button-all-pizza {
-  background-color: #ec890e;
+#li.active {
   border-radius: 4px;
 
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-  background-color: transparent !important;
+  background-color: #ec890e;
   border-radius: 4px;
 }
 
@@ -321,6 +340,7 @@
 }
 
 .clear-order {
+  cursor: pointer;
   font-size: 10px;
   margin-left: 30px;
   color: rgba(0, 0, 0, .5);
@@ -344,7 +364,8 @@
 }
 
 .btn-order {
-  padding: 30px;
+  padding: 0 30px 19px;
+
 }
 
 .button-order {
@@ -416,15 +437,17 @@
     border-radius: 15px;
   }
 }
+
 .btn-minus {
-  background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+  background-image: linear-gradient(to bottom, #d9534f 0, #c12e2a 100%);
   border-color: #b92c28;
 }
 
 .btn-plus {
-  background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%);
+  background-image: linear-gradient(to bottom, #5cb85c 0, #419641 100%);
   border-color: #3e8f3e;
 }
+
 .price {
   padding-right: 8px;
 }
@@ -439,13 +462,13 @@
 
 .btn-remove {
   margin-left: 16px;
-  color: #db751a!important;
-  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  color: #db751a !important;
+  background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%);
 }
 
 .refresh-pizza {
   a {
-    color:white;
+    color: white;
     margin-top: 2px;
   }
 }
