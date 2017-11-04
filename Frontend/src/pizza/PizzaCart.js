@@ -56,6 +56,7 @@ function removeFromCart(cart_item) {
     Cart.splice(ind, 1);
 
     //Після видалення оновити відображення
+
     updateOrderCount();
     updateCart();
 }
@@ -72,10 +73,17 @@ function findIndex(pizza, size){
 
 
 function initialiseCart() {
+
     //Фукнція віпрацьвуватиме при завантаженні сторінки
     var saved_cart = Storage.read("cart");
     if (saved_cart) {
         Cart = saved_cart;
+    }
+    if (Cart.length === 0) {
+        updateEmpty();
+    } else {
+        $("#is_order").prop("disabled", false);
+        $(".sum").text("Сума замовлення");
     }
     updateCart();
 }
@@ -111,8 +119,14 @@ function updateCart() {
                 cart_item.quantity -= 1;
             if (cart_item.quantity == 0) {
                 removeFromCart(cart_item);
+                if (Cart.length === 0) {
+                    empty = true;
+                    updateEmpty();
+                }
                 updateOrderCount();
+
             }
+
             //Оновлюємо відображення
             updateCart();
         });
@@ -126,12 +140,9 @@ function updateCart() {
             }
 
         });
-
-
         $cart.append($node);
 
         updateOrderCount();
-
     }
 
     Cart.forEach(showOnePizzaInCart);
@@ -180,7 +191,6 @@ function addText() {
         var html_code = Templates.PizzaCart_EmptyText();
         var $node = $(html_code);
         $cart.prepend($node);
-
     }
 }
 
