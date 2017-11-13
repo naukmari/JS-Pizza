@@ -11,3 +11,4 @@ exports.PizzaCart_OneItem = ejs.compile(fs.readFileSync('./Frontend/templates/Pi
 
 exports.PizzaCart_EmptyText = ejs.compile(fs.readFileSync('./Frontend/templates/PizzaCart_EmptyText.ejs', "utf8"));
 
+exports.PizzaCart_OneItemOrder = ejs.compile(fs.readFileSync('./Frontend/templates/PizzaCart_OneItemOrder.ejs', "utf8"));

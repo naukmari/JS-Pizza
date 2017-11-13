@@ -1,0 +1,94 @@
+<% include common/header.ejs %>
+
+<div class="">
+    <div class="main-pizza">
+
+        <!--<div class="discount-badge">-->
+            <!--<img src="assets/images/discount.svg">-->
+            <!--<div class="discount-title">ЦЬОГО ТИЖНЯ НА ВСЕ</div>-->
+            <!--<div class="value-of-discount">-20%</div>-->
+        <!--</div>-->
+
+        <div class="my-container">
+
+            <div class="left-panel">
+                <div class="page-title">
+                    <h2>
+                        <span class="all" id="name">Усі піци</span>
+                        <span class="badge pizza-count">8</span>
+                    </h2>
+                </div>
+                <div class="all-pizza-type">
+                    <ul class="nav nav-pills all-pizza-type">
+                        <li role="presentation" class="active pizza-filter-button" id="filter-button-all-pizza">
+                            <a href="#">
+                                Усі
+                            </a>
+                        </li>
+                        <li role="presentation" class="pizza-filter-button" id="filter-button-meat">
+                            <a href="#">
+                                М'ясні
+                            </a>
+                        </li>
+                        <li role="presentation" class="pizza-filter-button" id="filter-button-pineapples">
+                            <a href="#">
+                                З ананасами
+                            </a>
+                        </li>
+                        <li role="presentation" class="pizza-filter-button" id="filter-button-mushrooms">
+                            <a href="#">
+                                З грибами
+                            </a>
+                        </li>
+                        <li role="presentation" class="pizza-filter-button" id="filter-button-ocean">
+                            <a href="#">
+                                З морепродуктами
+                            </a>
+                        </li>
+                        <li role="presentation" class="pizza-filter-button" id="filter-button-tomato">
+                            <a href="#">
+                                Вега
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row" id="pizza_list">
+
+                </div>
+            </div>
+            <div class="top-panel">
+                <div class="site-icon">
+                    <a href="index.html">
+                        <div class="site-title">PIZZA</div>
+                        <div class="site-title-2part">KMA</div>
+                    </a>
+                    <img src="assets/images/discount.svg">
+                </div>
+                <div class="first-row">
+                    <span class="phone-number">
+                        (044) 222 5 222
+                    </span>
+                    <span class="work hidden-sm hidden-xs">
+                        24 години / 7 днів на тиждень
+                    </span>
+                    <span class="delivery hidden-md hidden-sm hidden-xs">
+                        Безкоштовна доставка піци
+                    </span>
+                    <button type="button" class="btn btn-log-in hidden-xs">Ввійти</button>
+                </div>
+                <div class="second-row">
+                <span class="refresh-pizza">
+                    <a href="index.html" class="hidden-xs">Піца</a>
+                </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<% include common/rightPanel.ejs %>
+<% include common/footer.ejs %>

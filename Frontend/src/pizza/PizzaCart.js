@@ -3,6 +3,7 @@
  */
 var Templates = require('../Templates');
 var Storage	= require('./Storage');
+var API = require('../API');
 
 //Перелік розмірів піци
 var PizzaSize = {
@@ -16,6 +17,7 @@ var empty = false;
 
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
+
 if (Cart.length === 0) {
     var html_code = Templates.PizzaCart_EmptyText();
     var $node = $(html_code);
@@ -23,6 +25,8 @@ if (Cart.length === 0) {
 }
 
 function addToCart(pizza, size) {
+    console.log(pizza);
+
     //Додавання однієї піци в кошик покупок
     var was_choosen = false;
     empty = false;
@@ -102,7 +106,12 @@ function updateCart() {
     addText();
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
-        var html_code = Templates.PizzaCart_OneItem(cart_item);
+        var html_code;
+        if (window.location.pathname.includes("order")) {
+            html_code = Templates.PizzaCart_OneItemOrder(cart_item);
+        } else {
+            html_code = Templates.PizzaCart_OneItem(cart_item);
+        }
 
         var $node = $(html_code);
 
@@ -140,6 +149,8 @@ function updateCart() {
             }
 
         });
+
+
         $cart.append($node);
 
         updateOrderCount();
@@ -194,10 +205,42 @@ function addText() {
     }
 }
 
+function createOrder(callback) {
+    var name=$("#inputName").val();
+    var phone=$("#inputPhone").val();
+    var address=$("#inputAdress").val();
+
+    order = [];
+    Cart.forEach(function(pizza) {
+        console.log(pizza);
+        order.push({
+            title: pizza.pizza.title,
+            size: pizza.size,
+            quantity: pizza.quantity,
+            sum: pizza.sum,
+        })
+    });
+
+    API.createOrder({
+        name: name ,
+        phone: phone,
+        address: address,
+        order: order,
+    }, function (err,result) {
+        console.log(err, result);
+        if(err){
+            return callback(err);
+        }
+
+        callback(null,result);
+    });
+};
+
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
 
 exports.getPizzaInCart = getPizzaInCart;
 exports.initialiseCart = initialiseCart;
+exports.createOrder = createOrder;
 
 exports.PizzaSize = PizzaSize;

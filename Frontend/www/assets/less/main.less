@@ -1,5 +1,5 @@
 @import "pizza/pizza-card";
-
+@import "order";
 @button-color: #ec9923;
 @border-color: #e38d13;
 @button-dark-color: #eb9316;
@@ -14,6 +14,7 @@
 }
 
 body {
+
   min-width: 600px;
 }
 
@@ -34,6 +35,7 @@ body {
 }
 
 .right-panel {
+  z-index: 2;
   height: 100%;
   width: @rightPanelWidth;
   position: fixed;
@@ -89,6 +91,7 @@ body {
     background-image: linear-gradient(to bottom, #f0861a 0, #eb831c 100%);
   }
 }
+
 
 .btn-buy-big {
   color: #fff !important;
@@ -211,6 +214,7 @@ body {
 }
 
 .top-panel {
+  z-index: 1;
   padding-right: 350px;
   width: 100%;
   height: 90px;
@@ -472,3 +476,4 @@ body {
     margin-top: 2px;
   }
 }
+

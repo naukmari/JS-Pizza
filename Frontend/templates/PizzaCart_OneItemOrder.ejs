@@ -2,6 +2,14 @@
     var pizza_size = 'Мала'
 else
     pizza_size = 'Велика' %>
+<%if (quantity % 10 == 1 && quantity % 10 != 11) {
+    var pizza_last = "піца" }
+    else if ((quantity % 10 == 2 || quantity % 10 == 3 || quantity % 10 == 4) && ((quantity/10)%10 != 1)) {
+    pizza_last = "піци"
+    } else {
+    pizza_last = "піц"
+}
+%>
 <div class="order-row">
     <div class="row-rp">
         <img class="img-order" src="<%=pizza.icon%>">
@@ -14,19 +22,8 @@ else
         </div>
         <div class="price-info">
             <span class="price"> <%= pizza[size].price * quantity %> грн</span>
-            <button type="button" class="btn btn-danger btn-minus">
-                <i class="glyphicon glyphicon-minus">
-                </i>
-            </button>
-            <span class="pizza-count"><%= quantity %></span>
-            <button type="button" class="btn btn-success btn-plus">
-                <i class="glyphicon glyphicon-plus">
-                </i>
-            </button>
-            <button type="button" class="btn btn-default btn-remove">
-                <i class="glyphicon glyphicon-remove">
-                </i>
-            </button>
+
+            <span class="pizza-count"><%= quantity %> <%=pizza_last%></span>
         </div>
     </div>
 </div>
