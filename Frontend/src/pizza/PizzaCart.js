@@ -14,7 +14,8 @@ var PizzaSize = {
 //Змінна, в якій зберігається перелік піц у кошику
 var Cart = [];
 var empty = false;
-
+var cost = 0;
+// var pizzas_names = [];
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
 
@@ -31,7 +32,7 @@ function addToCart(pizza, size) {
     var was_choosen = false;
     empty = false;
     Cart.forEach(function (object) {
-        if (pizza === object.pizza && size === object.size) {
+        if (object.pizza.id === pizza.id && size === object.size) {
             was_choosen = true;
             object.quantity += 1;
         }
@@ -211,6 +212,9 @@ function createOrder(callback) {
     var address=$("#inputAdress").val();
 
     order = [];
+    Cart.forEach(function (pizza) {
+        cost += pizza.sum;
+    })
     Cart.forEach(function(pizza) {
         console.log(pizza);
         order.push({
@@ -226,6 +230,7 @@ function createOrder(callback) {
         phone: phone,
         address: address,
         order: order,
+        total: cost
     }, function (err,result) {
         console.log(err, result);
         if(err){

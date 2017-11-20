@@ -1,7 +1,6 @@
 /**
  * Created by chaika on 25.01.16.
  */
-
 $(function(){
     //This code will execute when the page is ready
     var PizzaMenu = require('./pizza/PizzaMenu');
@@ -12,7 +11,8 @@ $(function(){
     var $inputAddress = $("#inputAdress");
     var validPhone = false;
     var validName = false;
-    var validAddress = false;
+     window.validAddress = false;
+
     $inputPhone.on("input", function () {
         var phoneStr = $inputPhone.val();
         if(phoneStr.match(/^0\d{9}$/) || phoneStr.match(/^\+380\d{9}$/)) {
@@ -39,11 +39,10 @@ $(function(){
         }
     });
     $inputAddress.on("input", function () {
-        if($inputAddress.val().trim() != "") {
+        if(window.validAddress) {
             $(".address-help-block").prop('style', 'display:none');
             $inputAddress.parent().removeClass('has-error');
             $inputAddress.parent().addClass('has-success');
-            validAddress = true;
         } else {
             $(".address-help-block").prop('style', '');
             $inputAddress.parent().removeClass('has-success');
@@ -51,21 +50,39 @@ $(function(){
         }
     });
 
+
     $(".next-btn").click(function () {
-        if (validName && validPhone && validAddress) {
+        if (validName && validPhone && window.validAddress) {
             PizzaCart.createOrder(function (err, data) {
                 if (err) {
                     alert("Can't create order");
                 } else {
-                    alert("You ordered " + data.pizza + "pizzas successfully");
+                    alert("Ваше замовлення прийнято! Укажіть свої дані для доставки");
+                    LiqPayCheckout.init({
+                        data:	data.data,
+                        signature:	data.signature,
+                        embedTo:	"#liqpay",
+                        mode:	"popup"	//	embed	||	popup
+                    }).on("liqpay.callback",	function(data){
+                        console.log(data.status);
+                        console.log(data);
+                        alert("Оплата пройшла успішно! Очікувайте на замовлення. Смачного! :)")
+                    }).on("liqpay.ready",	function(data){
+//	ready
+                    }).on("liqpay.close",	function(data){
+//	close
+                    });
                 }
             });
         } else {
             alert("Can't create order, input valid information");
         }
     });
+
     PizzaCart.initialiseCart();
     PizzaMenu.initialiseMenu();
 
 
 });
+
+require("./GoogleMaps")
